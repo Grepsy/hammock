@@ -297,8 +297,13 @@ namespace Hammock.Authentication.OAuth
 
                         break;
                     }
-                default:
-                    throw new NotImplementedException("Only HMAC-SHA1 is currently supported.");
+                case OAuthSignatureMethod.PlainText: 
+                    {
+                        signature = "{0}&{1}".FormatWith(consumerSecret, tokenSecret);
+                        break;
+                    }
+              default:
+                    throw new NotImplementedException("Only HMAC-SHA1 and PlainText is currently supported.");
             }
 
             var result = signatureTreatment == OAuthSignatureTreatment.Escaped
