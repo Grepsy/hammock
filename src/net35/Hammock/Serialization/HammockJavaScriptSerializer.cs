@@ -10,7 +10,11 @@ namespace Hammock.Serialization
     public class HammockJavaScriptSerializer : Utf8Serializer, ISerializer, IDeserializer
     {
         private readonly JavaScriptSerializer _serializer;
-
+        
+        public HammockJavaScriptSerializer() {
+            _serializer = new JavaScriptSerializer();
+        }
+       
         public HammockJavaScriptSerializer(JavaScriptTypeResolver resolver)
         {
             _serializer = new JavaScriptSerializer(resolver);
